@@ -4,9 +4,7 @@
 </form>
 <h1>To Do List {{month}}/{{day}}/{{year}}</h1>
 <h3>Epicodus {{currentFocus}}</h3>
-<ul>
-  <li [class]="priorityColor(currentTask)" *ngFor="let currentTask of tasks">{{currentTask.description}} <button (click)="editTask(currentTask)">Edit</button></li>
-</ul>
+<app-task-list [childTaskList]='masterTaskList' (clickSender)="editTask($event)" (addTask)='finish($event)'></app-task-list>
 <div *ngIf="selectedTask">
   <h3>{{selectedTask.description}}</h3>
   <p>Task Complete? {{selectedTask.done}}</p>
@@ -18,4 +16,13 @@
   <input type="radio" [(ngModel)]="selectedTask.priority" value="2">2 (Medium Priority)<br>
   <input type="radio" [(ngModel)]="selectedTask.priority" value="3">3 (High Priority)<br>
   <button (click)="finishEditing()">Submit</button>
+</div>
+<div *ngIf="addANewTask">
+  <label>Task Name</label>
+  <input id="task">
+  <label>Task Priority</label>
+  <input type="radio" name="priority" value="1" ngModel>1
+  <input type="radio" name="priority" value="2" ngModel>2
+  <input type="radio" name="priority" value="3" ngModel>3
+  <button (click)='finishAddTask()'>Sumbit</button>
 </div>
