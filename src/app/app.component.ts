@@ -25,12 +25,14 @@ export class AppComponent {
     console.log(clickedTask)
     this.selectedTask = clickedTask
   }
+
   addANewTask = null;
   finish(){
     console.log("finish adding a new task function");
     this.addANewTask = true;
   }
-  finishEditing(){
+
+  finishedEditing(){
     console.log('finishTask function')
     this.selectedTask = null;
   }
